@@ -1,1 +1,55 @@
+Quick Sort ------> Partition Algo (Main Concept)
+
+1) It is a Inplace Sorting Algo
+2) It is Not a Stable Sorting
+3) Here you don't need to divide and find the mid value 
+
+Step 1:
+      # Driver code
+      arr = [50, 40, 70, 10, 30, 90, 45, 67, 79]
+      i, j = 0, len(arr)-1
+
+      res = quickSort(arr, i, j)   -----> Function Calling  ---> Step 2
+      print(res)
+
+Step 2:
+      def quickSort(arr, i, j):
+          if i < j:
+              ## Like marge Sort you need to find a element for divide the array into 2 parts 
+              m = partitionAlgo(arr, i, j)    ----------------------> Step 3 <-----Step 2
+        
+              ## Recurrence will took part for left subarray
+              quickSort(arr, i, m-1)     ---------------------------> Step 4 ( recurssion will run until i == m-1)
+
+              ## When (i == m-1 reached then m+1 to j recurssion come to picture)
+        
+              ## Recurrence will took part for right Subarray
+              quickSort(arr, m+1, j)
+          return arr
+
+Step 3:   ----> Step 4   
+
+## Function Declaration for partitionAlgo, main Algo for Quick Sort
+def partitionAlgo(arr, p, q):
+    
+    ## Step 1: assume a Pivot element
+    pivot = arr[p]  ## no need to take any variable, for remember purpose
+    print(pivot)
+    
+    ## Initilise the index of i as start from 0 
+    i = p
+    
+    ## Also initilize the Index of j from next index or i 
+    for j in range(i+1, q+1):
+        if arr[j] <= pivot: ## Always compare the j'th element with pivot/ arr[p]'th element
+            i += 1          ## If true, First incress/ jump i'th value 1 step 
+            arr[i], arr[j] = arr[j], arr[i] ## Then Swap the value between arr[i] and arr[j]
+            
+    ## Last you definatly need a swap between arr[i] and arr[p] **** NOT pivot ****
+    ## Because if you swap between pivot and arr[i], it don't modify the original array, it only change pivot value
+    arr[i], arr[p] = arr[p], arr[i]
+    return i   ----------------------------------------> step 2
+
+
+
 
